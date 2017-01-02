@@ -9,10 +9,16 @@ amqp.connect('amqp://localhost', function(err, conn) {
       console.log(' [x] Waiting for messagees in %s. To exit press CRTL+C', q.queue)
 
       ch.bindQueue(q.queue, ex, '');
-
       ch.consume(q.queue, function(msg) {
-        console.log(" [x] %s", msg.content.toString())
-      }, {noAck: true});
+
+      setTimeout(function() {
+          console.log(" [x] %s Received at " + new Date, msg.content.toString())
+          }, 3000)
+        }, {noAck: true});
+
+      // ch.consume(q.queue, function(msg) {
+      //   console.log(" [x] %s Received at " + new Date, msg.content.toString())
+      // }, {noAck: true});
     })
   })
 })

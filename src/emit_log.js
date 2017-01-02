@@ -7,7 +7,7 @@ amqp.connect('amqp://localhost', function(err, conn) {
 
     ch.assertExchange(ex, 'fanout', {durable: false})
     ch.publish(ex, '', Buffer.from(msg))
-    console.log(' [x] Sent %s', msg)
+    console.log(' [x] Sent %s', msg + " at " + new Date)
 
   });
   setTimeout(function() { conn.close(); process.exit(0)}, 500)
